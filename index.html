@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="brewingWaterRegistry">
+<head>
+	<meta charset="UTF-8">
+	<link href="bower_components/twitter/dist/css/bootstrap.css" rel="stylesheet"></link>
+	<title>Brewing Water Registry</title>
+	<script src="bower_components/angular/angular.js"></script>
+	
+	<script src='https://maps.googleapis.com/maps/api/js?sensor=false'></script>
+	<!--<script src='bower_components/underscore/underscore.js'></script>-->
+	<script src='bower_components/lodash/dist/lodash.underscore.min.js'></script>
+	<script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+	<script src="app.js"></script>
+		
+	<style>
+		.angular-google-map-container { 
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Brewing Water Registry</h1>
+
+	<div ng-controller="brewingWaterRegistryController" >
+
+		<button type="button" ng-click="addEntry()" class="btn btn-primary">Enter Your Water Profile</button>
+
+
+		<div>
+			{{ map.center }}<BR>
+			{{ map.zoom }}
+		</div>
+
+		<div class="col-sm-6">
+			<google-map 
+				center="map.center" 
+				zoom="map.zoom"
+				draggable="true"
+				events="map.events">
+
+				<markers
+					models="entries"
+					coords="'self'"
+					doCluster="false">
+				</markers>
+
+			</google-map>
+		</div>
+		
+	</div>
+</body>
+</html>
