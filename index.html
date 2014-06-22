@@ -11,42 +11,76 @@
 	<script src='bower_components/lodash/dist/lodash.underscore.min.js'></script>
 	<script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 	<script src="app.js"></script>
-		
+
 	<style>
-		.angular-google-map-container { 
-			height: 400px;
+		
+		.angular-google-map,
+		.angular-google-map-container {
+			width: 100%;
+			height: 100vh;
+			min-height: 500px
+		}
+
+		.angular-google-map {
+			padding:0;
+			padding-right: 350px;
+		}
+
+		.angular-google-map-container {
+
+		}
+
+		/* form control feedback fix so it doesnt cover the addon */
+		.form-horizontal .has-feedback .form-control-feedback {
+			right: 52px;
+			z-index: 2;
+		}
+
+		.ion-name-addon {
+			width:60px;
+		}
+
+		.entry-panel {
+			min-height: 450px;
+			width:350px;
+			position:absolute;
+			right:0;
+			top:0;
+			padding:10px 40px 0 40px;
+			background:rgba(255,255,255,0.8);
 		}
 	</style>
 </head>
-<body>
-	<h1>Brewing Water Registry</h1>
+<body ng-controller="brewingWaterRegistryController">
 
-	<div ng-controller="brewingWaterRegistryController" >
+	<google-map 
+		center="map.center" 
+		zoom="map.zoom"
+		draggable="true"
+		events="map.events">
 
-		<button type="button" ng-click="addEntry()" class="btn btn-primary">Enter Your Water Profile</button>
+		<markers
+			models="entries"
+			coords="'coords'"
+			icon="'icon'"
+			click="openEntry"
+			doCluster="true">
+		</markers>
 
+		<marker coords='water1.coords'
+			icon="'http://maps.google.com/mapfiles/marker.png'">
+		</marker>
 
-		<div>
-			{{ map.center }}<BR>
-			{{ map.zoom }}
-		</div>
+	</google-map>
+	
+	<h1 style="position:absolute;left:30px;top:30px;">Brewing Water Registry</h1>
 
-		<div class="col-sm-6">
-			<google-map 
-				center="map.center" 
-				zoom="map.zoom"
-				draggable="true"
-				events="map.events">
+	<div class="entry-panel">
 
-				<markers
-					models="entries"
-					coords="'self'"
-					doCluster="false">
-				</markers>
+		<water-entry-form water="water1" ></water-entry-form>
+		<button type="button" ng-click="addEntry()" class="btn btn-primary">Enter Water Profile</button>
+	
 
-			</google-map>
-		</div>
-		
 	</div>
 </body>
 </html>

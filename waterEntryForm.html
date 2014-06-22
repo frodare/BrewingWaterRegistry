@@ -1,0 +1,28 @@
+<div class="water-entry-form">
+	<form role="form" class="form-horizontal" name="waterEntryForm" ng-controller="raWaterController">
+		<ion-form-field ion-name="Ca" ion="water.profile.Ca" warn="200"></ion-form-field>
+		<ion-form-field ion-name="Mg" ion="water.profile.Mg" warn="50"></ion-form-field>
+		<ion-form-field ion-name="SO" ion="water.profile.SO" warn="150"></ion-form-field>
+		<ion-form-field ion-name="Na" ion="water.profile.Na" warn="60"></ion-form-field>
+		<ion-form-field ion-name="Cl" ion="water.profile.Cl" warn="200"></ion-form-field>
+		<ion-form-field ion-name="HCO" ion="water.profile.HCO"></ion-form-field>
+		<ra-result></ra-result>
+		
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">latitude</span>
+				<input ng-model="water.coords.latitude" type="text" class="form-control" placeholder="click map to set" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">longitude</span>
+				<input ng-model="water.coords.longitude" type="text" class="form-control" placeholder="click map to set" />
+			</div>
+		</div>
+	</form>
+</div>
+
+
+
